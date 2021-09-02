@@ -1,9 +1,12 @@
 package com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity;
 
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.base.UserDateAuditEntity;
 import org.hibernate.validator.constraints.Length;
@@ -11,6 +14,11 @@ import org.hibernate.validator.constraints.Length;
 @Entity
 @Table(name = "tbl_countries")
 public class CountryEntity extends UserDateAuditEntity {
+
+
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @Column(nullable = false)
     @Length(min = 2, max = 100)
@@ -20,8 +28,18 @@ public class CountryEntity extends UserDateAuditEntity {
     @Length(min = 1, max = 10)
     private String daneCode;
 
-    @ManyToOne()
+    @OneToMany(mappedBy = "country")
     private Set<ProductEntity> products;
+
+
+
+    public UUID getId() {
+        return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
 
     public String getName() {
@@ -48,5 +66,7 @@ public class CountryEntity extends UserDateAuditEntity {
     public void setProducts(Set<ProductEntity> products) {
         this.products = products;
     }
+
+
 
 }

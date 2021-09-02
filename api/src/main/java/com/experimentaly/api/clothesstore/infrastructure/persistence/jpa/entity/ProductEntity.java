@@ -1,10 +1,13 @@
 package com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity;
 
 import java.util.Set;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,6 +23,9 @@ import org.hibernate.validator.constraints.Length;
 @Table(name = "tbl_products")
 public class ProductEntity extends UserDateAuditEntity {
 
+    @Id
+    @GeneratedValue
+    private UUID id;
 
     @Column(nullable = false)
     @Length(min = 3, max = 100)
@@ -49,6 +55,15 @@ public class ProductEntity extends UserDateAuditEntity {
     @Formula("price-(price*(discount/100))")
     private float priceDiscount;
 
+
+
+    public UUID getId() {
+        return this.id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
 
     public String getName() {
