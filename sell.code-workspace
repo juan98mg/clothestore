@@ -1,0 +1,61 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "[typescript]": {
+      "editor.formatOnSave": true,
+      "editor.formatOnPaste": true
+    },
+    "[html]": {
+      "editor.formatOnSave": true,
+      "editor.formatOnPaste": true
+    },
+    "[java]": {
+      "editor.formatOnSave": true,
+      "editor.formatOnPaste": true,
+      "editor.defaultFormatter": "redhat.java"
+    },
+    "[jsonc]": {
+      "editor.formatOnSave": true
+    },
+
+    "editor.formatOnSave": true,
+    "typescript.preferences.quoteStyle": "single",
+
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.fixAll.tslint": true,
+      "source.fixAll.stylelint": true,
+      "source.organizeImports": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+    "java.format.settings.profile": "GoogleStyle",
+
+    "maven.view": "hierarchical"
+  },
+  "extensions": {
+    "recommendations": [
+      "vscjava.vscode-java-pack",
+      "redhat.java",
+      "vscjava.vscode-maven",
+      "vscjava.vscode-java-test",
+      "vscjava.vscode-java-dependency",
+      "vscjava.vscode-java-debug",
+      "esbenp.prettier-vscode",
+      "sonarsource.sonarlint-vscode",
+      "cbrevik.toggle-format-on-save",
+      "visualstudioexptteam.vscodeintellicode",
+      "donjayamanne.githistory",
+      "pivotal.vscode-spring-boot",
+      "vscjava.vscode-spring-boot-dashboard",
+      "sohibe.java-generate-setters-getters",
+      "GitLab.gitlab-workflow",
+      "gabrielbb.vscode-lombok"
+    ]
+  }
+}

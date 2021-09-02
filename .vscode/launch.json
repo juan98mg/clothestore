@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "clothes api",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.experimentaly.api.clothesstore.ApiApplication",
+      "projectName": "api",
+      "env": {
+        "CL_ENV": "dev"
+      },
+      "args": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MavenWrapperDownloader",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "MavenWrapperDownloader",
+      "args": ""
+    }
+  ]
+}
