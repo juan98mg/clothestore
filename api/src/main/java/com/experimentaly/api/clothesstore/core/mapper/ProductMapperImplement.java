@@ -12,9 +12,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class ProductMapperImplement implements ProductMapper {
 
 
@@ -64,9 +64,9 @@ public class ProductMapperImplement implements ProductMapper {
 
         if (products != null) {
 
-            products.stream().forEach((product) -> {
-                listModel.add(convertEntity(product));
-            });
+            products.stream().forEach(product -> 
+                listModel.add(convertEntity(product))
+            );
         }
 
         return listModel;

@@ -7,7 +7,9 @@ import com.experimentaly.api.clothesstore.core.ports.input.ImageMapper;
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity.ImageEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ImageMapperImplement implements ImageMapper {
 
 
@@ -29,9 +31,9 @@ public class ImageMapperImplement implements ImageMapper {
         var modelSet = new HashSet<ImageModel>();
 
         if (images != null) {
-            images.stream().forEach((img) -> {
-                modelSet.add(convert(img));
-            });
+            images.stream().forEach(img -> 
+                modelSet.add(convert(img))
+            );
         }
 
         return modelSet;

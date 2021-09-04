@@ -7,7 +7,7 @@ public class AppConstants {
         public static final String MIN_VALUE_DISCOUNT_VALIDATION_ERROR =
                         "product discount cannot be less than 0 ";
         public static final String MAX_VALUE_DISCOUNT_VALIDATION_ERROR =
-                        "product discount cannot be greater than 0 ";
+                        "product discount cannot be greater than 100 ";
         public static final String MIN_VALUE_PRICE_VALIDATION_ERROR =
                         "product price cannot be less than 0 ";
         public static final String PRODUCT_NAME_NOT_VALID = "product name is not valid";
@@ -34,5 +34,33 @@ public class AppConstants {
         public static final String UNEXPECTED_ERROR = "Unexpected error";
         public static final String SERVER_ERROR = "ServerError";
         public static final String SRVER_UNAVALIABLED = "Service unavaible";
+        public static final String MAX_VALUE_DISCOUNT_GREATER_VALIDATION_ERROR =
+                        "graterDiscount cannot be greater than 100 ";
+        public static final String MIN_VALUE_DISCOUNT_GREATER_VALIDATION_ERROR =
+                        "graterDiscount cannot be less than 0 ";
+
+        public static final String MAX_VALUE_DISCOUNT_LESS_VALIDATION_ERROR =
+                        "lessDiscount cannot be greater than 100 ";
+        public static final String MIN_VALUE_DISCOUNT_LESS_VALIDATION_ERROR =
+                        "lessDiscount cannot be less than 0 ";
+
+
+        public static final String MIN_VALUE_PRICE_GREATER_VALIDATION_ERROR =
+                        "graterPrice cannot be less than 0 ";
+
+        public static final String MIN_VALUE_PRICE_LESS_VALIDATION_ERROR =
+                        "lessPrice cannot be less than 0 ";
+
+        public static final String MIN_VALUE_SIZE_VALIDATION_ERROR =
+                        "page size can not be less than 1";
+        public static final String MIN_VALUE_PAGE_VALIDATION_ERROR = "page can not be less than 0";
+        public static final String LIST_DTO_IS_NULL_VALIDATION_ERROR_CODE = "listDtoNull";
+        public static final String LIST_DTO_IS_NULL_VALIDATION_ERROR =
+                        "list request dto can not be null";
+
+
+        private AppConstants(){
+                
+        }
 
 }

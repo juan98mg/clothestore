@@ -1,5 +1,6 @@
 package com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -22,7 +23,9 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "tbl_products")
-public class ProductEntity extends UserDateAuditEntity {
+public class ProductEntity extends UserDateAuditEntity implements Serializable {
+
+    private static final long serialVersionUID = -3428544141278441956L;
 
     @Id
     @GeneratedValue
@@ -44,7 +47,7 @@ public class ProductEntity extends UserDateAuditEntity {
     @Enumerated(EnumType.STRING)
     private Popularity popularity = Popularity.ZERO;
     @Min(0)
-    private int timesSearched = 0;
+    private Long searchedTimes = 0l;
     @Formula("price-(price*(discount/100))")
     private float priceDiscount;
 
@@ -107,12 +110,12 @@ public class ProductEntity extends UserDateAuditEntity {
         this.popularity = popularity;
     }
 
-    public int getTimesSearched() {
-        return this.timesSearched;
+    public Long getSearchedTimes() {
+        return this.searchedTimes;
     }
 
-    public void setTimesSearched(int timesSearched) {
-        this.timesSearched = timesSearched;
+    public void setSearchedTimes(Long timesSearched) {
+        this.searchedTimes = timesSearched;
     }
 
 
