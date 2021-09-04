@@ -7,7 +7,6 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import com.experimentaly.api.clothesstore.application.rest.request.ProductListRequest;
-import com.experimentaly.api.clothesstore.application.rest.request.ProductRequestSave;
 import com.experimentaly.api.clothesstore.core.exception.ValidationException;
 import com.experimentaly.api.clothesstore.core.model.ProductModel;
 import com.experimentaly.api.clothesstore.core.ports.input.ImageService;
@@ -19,7 +18,6 @@ import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity.
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity.ProductEntity;
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.repository.CountryRepository;
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.repository.ProductRepository;
-import org.hibernate.cfg.NotYetImplementedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -91,9 +89,36 @@ public class ProductServiceImplement extends BaseService implements ProductServi
     }
 
     @Override
-    public void update(ProductRequestSave product) {
-        throw new NotYetImplementedException();
+    public void update(ProductModel model, MultipartFile[] files, String selledCountry) {
+        var country = getCountryByName(selledCountry);
+        var msn = validateToUpdate(model);
+        msn += validateDiscountByCountry(selledCountry, model.getDiscount(), country);
 
+        if (!"".equals(msn))
+            throw new ValidationException(AppConstants.PRODUCT_VALIDATION_ERROR_CODE, msn);
+
+        var productEntity = mapper.convertEntity(model);
+        productEntity.setCountry(country);
+
+        productEntity = repository.saveAndFlush(productEntity);
+
+        imageService.changeImages(files, productEntity);
+
+
+
+    }
+
+    private String validateToUpdate(ProductModel model) {
+
+        var msn = "";
+
+        if (model.getId() == null) {
+            msn += AppConstants.ID_TO_UPDATE_DEFINED_ERROR;
+        } else if (!this.repository.existsById(model.getId())) {
+            msn += AppConstants.UPDATING_NOT_EXISTS_ELEMENT;
+        }
+
+        return msn;
     }
 
     @Override
@@ -146,7 +171,7 @@ public class ProductServiceImplement extends BaseService implements ProductServi
 
                 incrementTimesSearched(dto, product);
 
-                redifinePopularity(avg, product);
+                redefinePopularity(avg, product);
 
                 this.repository.save(product);
 
@@ -155,7 +180,7 @@ public class ProductServiceImplement extends BaseService implements ProductServi
         }
     }
 
-    private void redifinePopularity(float avg, ProductEntity product) {
+    private void redefinePopularity(float avg, ProductEntity product) {
         var searchedtime = product.getSearchedTimes();
         if (searchedtime > (avg + highestPopularity))
             product.setPopularity(Popularity.HIGHEST);

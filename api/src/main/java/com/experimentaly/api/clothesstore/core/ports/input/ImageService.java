@@ -7,4 +7,6 @@ public interface ImageService {
 
     void save(MultipartFile[] files, ProductEntity product);
 
+    void changeImages(MultipartFile[] files, ProductEntity productEntity);
+
 }
