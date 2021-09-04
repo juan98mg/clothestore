@@ -16,7 +16,7 @@
         "CL_DB_URL": "jdbc:postgresql://localhost:5432/seller",
         "CL_DB_DRIVER": "org.postgresql.Driver"
       },
-      "args": ""
+      "args": [""]
     },
     {
       "type": "java",
