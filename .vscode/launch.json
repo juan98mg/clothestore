@@ -6,12 +6,17 @@
       "request": "launch",
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
-      "mainClass": "com.experimentaly.api.clothesstore.ApiApplication",
-      "projectName": "api",
+      "mainClass": "com.experimentaly.api.clothesstore.ClothesstoreApplication",
+      "projectName": "clothesstore",
       "env": {
-        "CL_ENV": "dev"
+        "CL_ENV": "dev",
+        "CL_DB_PLATFORM": "org.hibernate.dialect.PostgreSQLDialect",
+        "CL_DB_PASSWORD": "devjuan",
+        "CL_DB_USER": "postgres",
+        "CL_DB_URL": "jdbc:postgresql://localhost:5432/seller",
+        "CL_DB_DRIVER": "org.postgresql.Driver"
       },
-      "args": ""
+      "args": [""]
     },
     {
       "type": "java",
