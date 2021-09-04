@@ -1,4 +1,4 @@
-package com.experimentaly.api.clothesstore.infrastructure.configuration;
+package com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.base;
 
 public enum Popularity {
 

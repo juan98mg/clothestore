@@ -14,7 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import com.experimentaly.api.clothesstore.infrastructure.configuration.Popularity;
+import com.experimentaly.api.clothesstore.core.util.AppConstants;
+import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.base.Popularity;
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.base.UserDateAuditEntity;
 import org.hibernate.annotations.Formula;
 import org.hibernate.validator.constraints.Length;
@@ -28,21 +29,24 @@ public class ProductEntity extends UserDateAuditEntity {
     private UUID id;
 
     @Column(nullable = false)
-    @Length(min = 3, max = 100)
+    @Length(min = 3, max = 100, message = AppConstants.PRODUCT_NAME_NOT_VALID)
     private String name;
     @Column(nullable = false)
     @Length(min = 3, max = 500)
     private String description;
     @Column(nullable = false)
+    @Min(value = 0, message = AppConstants.MIN_VALUE_PRICE_VALIDATION_ERROR)
     private float price;
-    @Min(0)
-    @Max(100)
+    @Min(value = 0, message = AppConstants.MIN_VALUE_DISCOUNT_VALIDATION_ERROR)
+    @Max(value = 100, message = AppConstants.MAX_VALUE_DISCOUNT_VALIDATION_ERROR)
     @Column(nullable = false)
     private float discount;
     @Enumerated(EnumType.STRING)
     private Popularity popularity = Popularity.ZERO;
     @Min(0)
     private int timesSearched = 0;
+    @Formula("price-(price*(discount/100))")
+    private float priceDiscount;
 
     @ManyToOne
     @JoinColumn(name = "country_sell_id", nullable = false)
@@ -51,9 +55,6 @@ public class ProductEntity extends UserDateAuditEntity {
 
     @OneToMany(mappedBy = "product")
     private Set<ImageEntity> images;
-
-    @Formula("price-(price*(discount/100))")
-    private float priceDiscount;
 
 
 
