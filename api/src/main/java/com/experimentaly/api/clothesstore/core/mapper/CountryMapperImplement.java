@@ -5,7 +5,9 @@ import com.experimentaly.api.clothesstore.core.ports.input.CountryMapper;
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity.CountryEntity;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CountryMapperImplement implements CountryMapper {
 
 
