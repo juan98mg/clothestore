@@ -150,4 +150,14 @@ public class ImageServiceImplement implements ImageService {
 
 
     }
+
+
+    @Override
+    public void changeImages(MultipartFile[] files, ProductEntity productEntity) {
+
+        this.repository.deleteById(productEntity.getId());
+
+        this.save(files, productEntity);
+
+    }
 }

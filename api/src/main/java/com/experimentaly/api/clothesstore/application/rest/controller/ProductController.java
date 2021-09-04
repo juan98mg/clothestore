@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,13 @@ public class ProductController {
 
         return service.save(model, request.getFiles(), request.getSelledCountry());
 
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(path = "${app.api.version.v1}/products")
+    public void update(@ModelAttribute ProductRequestSave request) {
+        var model = mapper.convert(request);
+        service.update(model, request.getFiles(), request.getSelledCountry());
     }
 
     @GetMapping(path = "${app.api.version.v1}/products")

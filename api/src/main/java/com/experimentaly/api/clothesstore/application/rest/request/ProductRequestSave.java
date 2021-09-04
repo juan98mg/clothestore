@@ -1,5 +1,6 @@
 package com.experimentaly.api.clothesstore.application.rest.request;
 
+import java.util.UUID;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductRequestSave {
 
+    private UUID id;
     @NotBlank(message = AppConstants.PRODUCT_NAME_NOT_VALID)
     private String name;
     private String description;
