@@ -59,4 +59,8 @@ public class AppConstants {
                         "list request dto can not be null";
 
 
+        private AppConstants(){
+                
+        }
+
 }

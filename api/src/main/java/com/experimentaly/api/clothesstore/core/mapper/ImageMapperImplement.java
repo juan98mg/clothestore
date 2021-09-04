@@ -31,9 +31,9 @@ public class ImageMapperImplement implements ImageMapper {
         var modelSet = new HashSet<ImageModel>();
 
         if (images != null) {
-            images.stream().forEach((img) -> {
-                modelSet.add(convert(img));
-            });
+            images.stream().forEach(img -> 
+                modelSet.add(convert(img))
+            );
         }
 
         return modelSet;

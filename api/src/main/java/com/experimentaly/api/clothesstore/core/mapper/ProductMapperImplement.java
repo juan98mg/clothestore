@@ -64,9 +64,9 @@ public class ProductMapperImplement implements ProductMapper {
 
         if (products != null) {
 
-            products.stream().forEach((product) -> {
-                listModel.add(convertEntity(product));
-            });
+            products.stream().forEach(product -> 
+                listModel.add(convertEntity(product))
+            );
         }
 
         return listModel;

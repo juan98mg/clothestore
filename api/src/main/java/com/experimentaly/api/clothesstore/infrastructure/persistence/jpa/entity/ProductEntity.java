@@ -1,5 +1,6 @@
 package com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Column;
@@ -22,7 +23,9 @@ import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "tbl_products")
-public class ProductEntity extends UserDateAuditEntity {
+public class ProductEntity extends UserDateAuditEntity implements Serializable {
+
+    private static final long serialVersionUID = -3428544141278441956L;
 
     @Id
     @GeneratedValue
