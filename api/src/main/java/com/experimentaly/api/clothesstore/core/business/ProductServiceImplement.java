@@ -88,6 +88,7 @@ public class ProductServiceImplement extends BaseService implements ProductServi
         return mapper.convertEntity(productEntity);
     }
 
+    @Transactional
     @Override
     public void update(ProductModel model, MultipartFile[] files, String selledCountry) {
         var country = getCountryByName(selledCountry);
@@ -103,8 +104,6 @@ public class ProductServiceImplement extends BaseService implements ProductServi
         productEntity = repository.saveAndFlush(productEntity);
 
         imageService.changeImages(files, productEntity);
-
-
 
     }
 
