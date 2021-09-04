@@ -57,10 +57,12 @@ public class AppConstants {
         public static final String LIST_DTO_IS_NULL_VALIDATION_ERROR_CODE = "listDtoNull";
         public static final String LIST_DTO_IS_NULL_VALIDATION_ERROR =
                         "list request dto can not be null";
+        public static final String ID_TO_UPDATE_DEFINED_ERROR = "must define a <>";
+        public static final String UPDATING_NOT_EXISTS_ELEMENT = "is updating no-existed product";
 
 
-        private AppConstants(){
-                
+        private AppConstants() {
+
         }
 
 }
