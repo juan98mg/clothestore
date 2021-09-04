@@ -44,7 +44,7 @@ public class ProductEntity extends UserDateAuditEntity {
     @Enumerated(EnumType.STRING)
     private Popularity popularity = Popularity.ZERO;
     @Min(0)
-    private int timesSearched = 0;
+    private Long searchedTimes = 0l;
     @Formula("price-(price*(discount/100))")
     private float priceDiscount;
 
@@ -107,12 +107,12 @@ public class ProductEntity extends UserDateAuditEntity {
         this.popularity = popularity;
     }
 
-    public int getTimesSearched() {
-        return this.timesSearched;
+    public Long getSearchedTimes() {
+        return this.searchedTimes;
     }
 
-    public void setTimesSearched(int timesSearched) {
-        this.timesSearched = timesSearched;
+    public void setSearchedTimes(Long timesSearched) {
+        this.searchedTimes = timesSearched;
     }
 
 
