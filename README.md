@@ -65,3 +65,15 @@ If you have run out of energy or time for your project, put a note at the top of
 Duo to this project is a monorepo, it has a workspace. Workspace contains vs code extentions that could help you to develop and start api and app parts.
 
 remember dad you can add launch.json to define the arguments in the run operation and de environment variables in the .vscode folder
+
+## API DOCUMENTATION
+
+in root folder was added two files. those files are .json and .yml types createdd with swagger.io
+**https://editor.swagger.io/** and there you can import one of them and you are able to observe
+each detail of this **API**.
+
+also you can test our **API** in this url
+[documentation](https://clothestore234.herokuapp.com)
+
+remember **API** has context **api** and also this version is **v1**
+so urls will be able on https://clothestore234.herokuapp.com/api/v1/
