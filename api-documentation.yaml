@@ -1,0 +1,229 @@
+swagger: "2.0"
+info:
+  description: "This is the project that support the clothesstore.Clothesstore LATAM is Located in Colombia. This company works for selling each fashion clothes or clothing accessories through internet. For that reason is created this project. Clothesstore help us to buy easy and effectively."
+  version: "1.0.0"
+  title: "Clothings Seller"
+  termsOfService: "https://www.experimentality.co/es/principal/"
+  contact:
+    email: "jadiosa@experimentality.co"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "clothesstore.com"
+basePath: "/v1"
+tags:
+- name: "clothes"
+  description: "Everything about your fashion clothes and accesories"
+  externalDocs:
+    description: "Find out more"
+    url: "http://clothestore.com"
+- name: "store"
+  description: "Access to clothestore orders"
+- name: "user"
+  description: "Operations about user"
+  externalDocs:
+    description: "Find out more about our store"
+    url: "http://clothestore.com"
+schemes:
+- "https"
+- "http"
+paths:
+  /api/v1/products:
+    post:
+      tags:
+      - "products"
+      summary: "Add a new product to the store"
+      description: ""
+      operationId: "saveProduct"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/ProductRequestSave"
+      responses:
+        "400":
+          description: "Validation Error"
+    put:
+      tags:
+      - "products"
+      summary: "Update an existing product"
+      description: ""
+      operationId: "updateProduct"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Product object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/ProductRequestSave"
+      responses:
+        "400":
+          description: "Validation error"
+        "404":
+          description: "product not found"
+        "202":
+          description: ""
+    get:
+      tags:
+      - "products"
+      summary: Get a products by any parameter
+      parameters:
+        - in: query
+          name: name
+          type: string
+          description: the name that products can match as like
+        - in: query
+          name: popularity
+          type: string
+          enum:
+            - "ZERO"
+            - "LOW"
+            - "MEDIUM" 
+            - "HIGH"
+            - "HIGHEST"
+          description: the popularity that products can match as equal
+        - in: query
+          name: lessDiscount
+          type: number
+          description: maximum discount that products can have
+        - in: query
+          name: graterDiscount
+          type: number
+          description: minimum discount that products can have
+        - in: query
+          name: lessPrice
+          type: number
+          description: maximum price that products can have
+        - in: query
+          name: graterPrice
+          type: number
+          description: minimum price that products can have
+        - in: query
+          name: deleted
+          type: boolean
+          description: whether is needed deleted products or not
+        - in: query
+          name: page
+          type: number
+          description: page of the produced queried table 
+        - in: query
+          name: size
+          type: number
+          description: limit of number per page
+      responses:
+        "200":
+          description: "list"
+          schema: 
+            $ref: "#/definitions/PageProduct"
+definitions:
+  ProductRequestSave:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        format: "uuid"
+        example: "0729a580-2240-11e6-9eb5-0002a5d5c51b"
+      name:
+        type: "string"
+      description:
+        type: "string"
+      price:
+        type: "number"
+        format: "float"
+      discount:
+        type: "number"
+        format: "float"
+      selledCountry:
+        type: "string"
+      popularity:
+        type: "string"
+        description: "product popularity"
+        enum:
+        - "ZERO"
+        - "LOW"
+        - "MEDIUM" 
+        - "HIGH"
+        - "HIGHEST"
+      files:
+        type: "object"
+  PageProduct:
+    type: "object"
+    properties:
+      totalElements: 
+        type: number
+        description: "total elements finded in page"
+      content:
+        type: array
+        items:
+          $ref: '#/definitions/ProductModel'
+  CountryModel:
+    type: object
+    properties:
+      name:
+        type: string
+      daneCode:
+        type: string
+      maximunDiscount: 
+        type: number
+  ImageModel:
+    type: object
+    properties:
+      name:
+        type: string
+      data:
+        type: object
+        description: is a byte[] array
+  ProductModel:
+    type: object
+    properties:
+      name: 
+        type: string
+      description:
+        type: string
+      price:
+        type: number
+      discount:
+        type: number
+      popularity:
+        type: string
+        description: product popularity
+        enum:
+        - "ZERO"
+        - "LOW"
+        - "MEDIUM" 
+        - "HIGH"
+        - "HIGHEST"
+      country:
+        $ref: '#/definitions/CountryModel'
+      images:
+        type: array
+        items:
+          $ref: '#/definitions/ImageModel'
+
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
