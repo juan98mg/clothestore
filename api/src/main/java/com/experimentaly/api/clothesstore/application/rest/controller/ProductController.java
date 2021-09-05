@@ -11,8 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class ProductController {
     private ProductMapper mapper;
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(path = "${app.api.version.v1}/products")
+    @RequestMapping(path = "${app.api.version.v1}/products", method = RequestMethod.POST)
     public ProductModel save(@ModelAttribute ProductRequestSave request) {
 
         var model = mapper.convert(request);
@@ -44,13 +45,22 @@ public class ProductController {
     }
 
     @GetMapping(path = "${app.api.version.v1}/products")
-    public Page<ProductModel> list(@RequestParam("popularity") Popularity popularity,
-            @RequestParam("name") String likeName, @RequestParam("lessDiscount") float lessDiscount,
-            @RequestParam("graterDiscount") float greaterDiscount,
-            @RequestParam("lessPrice") float lessPrice,
-            @RequestParam("graterPrice") float greaterPrice,
-            @RequestParam("deleted") boolean deleted, @RequestParam("country") String country,
-            @RequestParam("page") int page, @RequestParam("size") int size) {
+    public Page<ProductModel> list(
+            @RequestParam(value = "popularity", required = false) Popularity popularity,
+            @RequestParam(value = "name", required = false) String likeName,
+            @RequestParam(value = "lessDiscount", required = false,
+                    defaultValue = "0.0") float lessDiscount,
+            @RequestParam(value = "graterDiscount", required = false,
+                    defaultValue = "0.0") float greaterDiscount,
+            @RequestParam(value = "lessPrice", required = false,
+                    defaultValue = "0.0") float lessPrice,
+            @RequestParam(value = "graterPrice", required = false,
+                    defaultValue = "0.0") float greaterPrice,
+            @RequestParam(value = "deleted", required = false,
+                    defaultValue = "false") boolean deleted,
+            @RequestParam(value = "country", required = false) String country,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "100") int size) {
 
 
         var dto = new ProductListRequest(likeName, popularity, lessDiscount, greaterDiscount,

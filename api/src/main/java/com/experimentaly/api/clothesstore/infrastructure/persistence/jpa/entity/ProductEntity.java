@@ -136,4 +136,14 @@ public class ProductEntity extends UserDateAuditEntity implements Serializable {
         this.images = images;
     }
 
+
+    public float getPriceDiscount() {
+        return this.priceDiscount;
+    }
+
+    public void setPriceDiscount(float priceDiscount) {
+        this.priceDiscount = priceDiscount;
+    }
+
+
 }

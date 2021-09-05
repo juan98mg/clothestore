@@ -43,48 +43,66 @@ public class ImageServiceImplement implements ImageService {
     @Override
     public void save(MultipartFile[] files, ProductEntity product) {
 
-        try {
+        if (files != null) {
 
-            var msnValid = validateToSave(files, product.getId());
+            try {
 
-            if (!"".equals(msnValid))
-                throw new ValidationException(AppConstants.IMAGES_VALIDATION_ERROR_CODE, msnValid);
+                var msnValid = validateToSave(files, product.getId());
+
+                if (!"".equals(msnValid))
+                    throw new ValidationException(AppConstants.IMAGES_VALIDATION_ERROR_CODE,
+                            msnValid);
 
 
-            for (MultipartFile file : files) {
+                for (MultipartFile file : files) {
 
-                var data = (file.getSize() > maxSizeAllowed) ? resize(file) : file.getBytes();
+                    if (file != null) {
 
-                var image = new ImageEntity(getName(file.getOriginalFilename(), product.getName()),
-                        data);
-                image.setProduct(product);
+                        var data = file.getSize() > maxSizeAllowed ? resize(file) : file.getBytes();
+                        var fileName = file.getOriginalFilename();
 
-                repository.saveAndFlush(image);
+                        fileName = fileName == null ? "provitional" : fileName;
+                        var image = new ImageEntity(getName(fileName, product.getName()), data);
+                        image.setProduct(product);
+
+                        repository.saveAndFlush(image);
+                    }
+                }
+            } catch (IOException io) {
+                throw new BaseException(AppConstants.IMAGE_SAVE_ERROR,
+                        AppConstants.ERROR_GETTING_BYTES, io);
+            } catch (Exception e) {
+                throw new BaseException(AppConstants.IMAGE_SAVE_ERROR, AppConstants.UNKNOW_ERROR,
+                        e);
             }
-        } catch (IOException io) {
-            throw new BaseException(AppConstants.IMAGE_SAVE_ERROR, AppConstants.ERROR_GETTING_BYTES,
-                    io);
-        } catch (Exception e) {
-            throw new BaseException(AppConstants.IMAGE_SAVE_ERROR, AppConstants.UNKNOW_ERROR, e);
         }
     }
 
 
     private String validateToSave(MultipartFile[] files, UUID productId) {
 
-        var msn = "";
-        for (MultipartFile file : files) {
-            var allowed = verifyAllowFile(file);
+        StringBuilder str = new StringBuilder();
 
-            if (!allowed)
-                msn += String.format(AppConstants.NOT_ALLOWED_FILE, file.getOriginalFilename())
-                        + ";";
+        if (files != null) {
+
+            for (MultipartFile file : files) {
+
+                if (file != null) {
+
+                    var allowed = verifyAllowFile(file);
+
+                    if (!allowed) {
+                        str.append(String.format(AppConstants.NOT_ALLOWED_FILE,
+                                file.getOriginalFilename()) + ";");
+                    }
+                }
+            }
+
+            if (!productRepository.existsById(productId))
+                str.append(AppConstants.PRODUCT_DOES_NOT_EXIST_BY_ID);
+
         }
-
-        if (!productRepository.existsById(productId))
-            msn += AppConstants.PRODUCT_DOES_NOT_EXIST_BY_ID;
-
-        return msn;
+        return str.toString();
 
     }
 
@@ -125,7 +143,7 @@ public class ImageServiceImplement implements ImageService {
             ImageIO.write(buffered, extension, baos);
             return baos.toByteArray();
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             throw new ImageRerenderException(AppConstants.RERENDER_FAILED_CODE,
                     AppConstants.RERENDER_FAILED);
         }
@@ -135,8 +153,8 @@ public class ImageServiceImplement implements ImageService {
     }
 
 
-    BufferedImage simpleResizeImage(BufferedImage originalImage, int targetWidth, int targetHeight)
-            throws Exception {
+    BufferedImage simpleResizeImage(BufferedImage originalImage, int targetWidth,
+            int targetHeight) {
         return Scalr.resize(originalImage, targetWidth, targetHeight);
     }
 
