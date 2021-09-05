@@ -81,7 +81,7 @@ public class ProductServiceImplement extends BaseService implements ProductServi
         var productEntity = mapper.convertEntity(product);
         productEntity.setCountry(country);
 
-        productEntity = repository.saveAndFlush(productEntity);
+        productEntity = repository.save(productEntity);
 
         imageService.save(files, productEntity);
 
@@ -101,7 +101,7 @@ public class ProductServiceImplement extends BaseService implements ProductServi
         var productEntity = mapper.convertEntity(model);
         productEntity.setCountry(country);
 
-        productEntity = repository.saveAndFlush(productEntity);
+        productEntity = repository.save(productEntity);
 
         imageService.changeImages(files, productEntity);
 
@@ -163,7 +163,8 @@ public class ProductServiceImplement extends BaseService implements ProductServi
     public void updatePopularity(ProductListRequest dto, List<ProductEntity> content) {
 
 
-        if (!dto.getPopularity().equals(Popularity.HIGHEST) && !content.isEmpty()) {
+        if (dto.getPopularity() != null && !dto.getPopularity().equals(Popularity.HIGHEST)
+                && !content.isEmpty()) {
 
             var avg = this.repository.getAveragePopularity();
             content.stream().forEach(product -> {
@@ -210,6 +211,10 @@ public class ProductServiceImplement extends BaseService implements ProductServi
             searchedtime += incrementByCountry;
         }
 
+        if (dto.getPopularity() != null) {
+            searchedtime += incrementByPopularity;
+        }
+
         product.setSearchedTimes(searchedtime);
     }
 
@@ -224,9 +229,11 @@ public class ProductServiceImplement extends BaseService implements ProductServi
             List<Predicate> predicates, String fieldName, CriteriaBuilder builder,
             Root<ProductEntity> root) {
 
-        predicates.add(builder.greaterThan(root.get(fieldName), greaterValue));
 
-        predicates.add(builder.lessThan(root.get(fieldName), lessValue));
+        if (greaterValue != 0)
+            predicates.add(builder.greaterThan(root.get(fieldName), greaterValue));
+        if (lessValue != 0)
+            predicates.add(builder.lessThan(root.get(fieldName), lessValue));
 
 
     }

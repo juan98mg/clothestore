@@ -11,9 +11,14 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import com.experimentaly.api.clothesstore.infrastructure.persistence.jpa.base.UserDateAuditEntity;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Table(name = "tbl_images")
+@EqualsAndHashCode(callSuper = false)
+@SuppressFBWarnings(value = {"EI_EXPOSE_REP", "EI_EXPOSE_REP2"},
+        justification = "there is not posibility with lombok")
 public class ImageEntity extends UserDateAuditEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
