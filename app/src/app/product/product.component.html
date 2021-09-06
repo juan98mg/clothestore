@@ -1,0 +1,9 @@
+<div class="home">
+  <mat-carousel [hideArrows]="false">
+    <mat-carousel-slide *ngFor="let banner of banners" class="center-vertical">
+      <div class="center-info h-100" style="height: 100%">
+        <img [src]="banner" alt="iamge" />
+      </div>
+    </mat-carousel-slide>
+  </mat-carousel>
+</div>

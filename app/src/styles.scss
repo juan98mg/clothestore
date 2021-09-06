@@ -1,1 +1,303 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+@include mat-core();
+
+$custom-pallete: (
+  50: #3e1c64,
+  100: #8b5ac2,
+  200: #7c7c7c,
+  contrast: (
+    50: $light-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+  ),
+);
+
+$sell-primary: mat-palette($mat-indigo);
+$sell-accent: mat-palette($custom-pallete, 50, 100, 50);
+
+$sell-warn: mat-palette($mat-red);
+$sell-theme: mat-light-theme(
+  (
+    color: (
+      primary: $sell-primary,
+      accent: $sell-accent,
+      warn: $sell-warn,
+    ),
+  )
+);
+
+@include angular-material-theme($sell-theme);
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+}
+
+$spacer: 20px;
+
+/****************************************************MARGINS_PADDINGS**************************************************************************/
+
+.mt-0 {
+  margin-top: 0 !important;
+}
+
+.mt-1 {
+  margin-top: $spacer * 0.2 !important;
+}
+
+.mt-2 {
+  margin-top: $spacer * 0.4 !important;
+}
+
+.mt-3 {
+  margin-top: $spacer * 0.6 !important;
+}
+
+.mt-4 {
+  margin-top: $spacer * 0.8 !important;
+}
+
+.mt-5 {
+  margin-top: $spacer !important;
+}
+
+.mr-0 {
+  margin-right: 0 !important;
+}
+
+.mr-1 {
+  margin-right: $spacer * 0.2 !important;
+}
+
+.mr-2 {
+  margin-right: $spacer * 0.4 !important;
+}
+
+.mr-3 {
+  margin-right: $spacer * 0.6 !important;
+}
+
+.mr-4 {
+  margin-right: $spacer * 0.8 !important;
+}
+
+.mr-5 {
+  margin-right: $spacer !important;
+}
+
+.mb-0 {
+  margin-bottom: 0px !important;
+}
+
+.mb-1 {
+  margin-bottom: $spacer * 0.2 !important;
+}
+
+.mb-2 {
+  margin-bottom: $spacer * 0.4 !important;
+}
+
+.mb-3 {
+  margin-bottom: $spacer * 0.6 !important;
+}
+
+.mb-4 {
+  margin-bottom: $spacer * 0.8 !important;
+}
+
+.mb-5 {
+  margin-bottom: $spacer !important;
+}
+
+.ml-0 {
+  margin-left: 0px !important;
+}
+
+.ml-1 {
+  margin-left: $spacer * 0.2 !important;
+}
+
+.ml-2 {
+  margin-left: $spacer * 0.4 !important;
+}
+
+.ml-3 {
+  margin-left: $spacer * 0.6 !important;
+}
+
+.ml-4 {
+  margin-left: $spacer * 0.8 !important;
+}
+
+.ml-5 {
+  margin-left: $spacer !important;
+}
+
+.pt-0 {
+  margin-top: 0px;
+}
+
+.pt-1 {
+  margin-top: $spacer * 0.2 !important;
+}
+
+.pt-2 {
+  margin-top: $spacer * 0.4 !important;
+}
+
+.pt-3 {
+  margin-top: $spacer * 0.6 !important;
+}
+
+.pt-4 {
+  margin-top: $spacer * 0.8 !important;
+}
+
+.pt-5 {
+  margin-top: $spacer !important;
+}
+
+.pr-0 {
+  margin-right: 0 !important;
+}
+
+.pr-1 {
+  margin-right: $spacer * 0.2 !important;
+}
+
+.pr-2 {
+  margin-right: $spacer * 0.4 !important;
+}
+
+.pr-3 {
+  margin-right: $spacer * 0.6 !important;
+}
+
+.pr-4 {
+  margin-right: $spacer * 0.8 !important;
+}
+
+.pr-5 {
+  margin-right: $spacer !important;
+}
+
+.pb-0 {
+  margin-bottom: 0 !important;
+}
+
+.pb-1 {
+  margin-bottom: $spacer * 0.2 !important;
+}
+
+.pb-2 {
+  margin-bottom: $spacer * 0.4 !important;
+}
+
+.pb-3 {
+  margin-bottom: $spacer * 0.6 !important;
+}
+
+.pb-4 {
+  margin-bottom: $spacer * 0.8 !important;
+}
+
+.pb-5 {
+  margin-bottom: $spacer !important;
+}
+
+.pl-0 {
+  margin-left: 0 !important;
+}
+
+.pl-1 {
+  margin-left: $spacer * 0.2 !important;
+}
+
+.pl-2 {
+  margin-left: $spacer * 0.4 !important;
+}
+
+.pl-3 {
+  margin-left: $spacer * 0.6 !important;
+}
+
+.pl-4 {
+  margin-left: $spacer * 0.8 !important;
+}
+
+.pl-5 {
+  margin-left: $spacer !important;
+}
+
+.ma-0 {
+  @extend .mt-0, .mr-0, .ml-0, .mb-0;
+}
+
+.ma-1 {
+  @extend .mt-1, .mr-1, .ml-1, .mb-1;
+}
+
+.ma-2 {
+  @extend .mt-2, .mr-2, .ml-2, .mb-2;
+}
+
+.ma-3 {
+  @extend .mt-3, .mr-3, .ml-3, .mb-3;
+}
+
+.ma-4 {
+  @extend .mt-4, .mr-4, .ml-4, .mb-4;
+}
+
+.ma-5 {
+  @extend .mt-5, .mr-5, .ml-5, .mb-5;
+}
+
+.pa-0 {
+  @extend .pt-0, .pr-0, .pl-0, .pb-0;
+}
+
+.pa-1 {
+  @extend .pt-1, .pr-1, .pl-1, .pb-1;
+}
+
+.pa-2 {
+  @extend .pt-2, .pr-2, .pl-2, .pb-2;
+}
+
+.pa-3 {
+  @extend .pt-3, .pr-3, .pl-3, .pb-3;
+}
+
+.pa-4 {
+  @extend .pt-4, .pr-4, .pl-4, .pb-4;
+}
+
+.pa-5 {
+  @extend .pt-5, .pr-5, .pl-5, .pb-5;
+}
+
+/****************************************************MARGINS_PADDINGS**************************************************************************/
+
+.w-100 {
+  width: 100%;
+}
+
+.w-50 {
+  width: 50%;
+}
+/****************************************************CUSTOM CLSASESS**************************************************************************/
+
+.center-info {
+  justify-content: center;
+  display: flex;
+}
+
+.center-vertical {
+  display: flex;
+  align-items: center;
+}

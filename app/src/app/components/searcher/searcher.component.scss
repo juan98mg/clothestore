@@ -1,0 +1,28 @@
+@import "../../../styles.scss";
+
+.searcher {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 430px) {
+  .searcher {
+    width: 75%;
+  }
+}
+
+@media (max-width: 430px) {
+  .searcher {
+    width: 100%;
+  }
+}
+
+.searcher__input {
+  height: 40%;
+  width: 100%;
+}
+
+:host ::ng-deep .mat-form-field-flex {
+  padding: 0em 0.75em 0 0.75em !important;
+}

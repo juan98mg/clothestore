@@ -1,0 +1,82 @@
+@import "../../../styles.scss";
+
+.text {
+  color: white;
+  cursor: pointer;
+}
+
+.text:hover {
+  text-decoration: underline;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title__text {
+  font-size: x-large;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.option {
+  @extend .mt-1, .mb-1;
+}
+
+.option__text {
+  @extend .ml-5;
+}
+
+.content__row {
+  @extend .center-info, .mt-4, .mb-4;
+}
+
+.content__row__divider {
+  height: 1px;
+  width: 80%;
+  background: white;
+  @extend .mt-3, .mb-3;
+}
+
+@media (min-width: 430px) {
+  .title__detail-display {
+    display: none;
+  }
+
+  .content__row__divider-display {
+    display: none;
+  }
+}
+
+.animate__custom-delay-1 {
+  --animate-delay: 0.2s;
+}
+
+.animate__custom-delay-2 {
+  --animate-delay: 0.4s;
+}
+
+.animate__custom-delay-3 {
+  --animate-delay: 0.6s;
+}
+
+.animate__custom-delay-4 {
+  --animate-delay: 0.8s;
+}
+
+.animate__custom-delay-5 {
+  --animate-delay: 1s;
+}
+
+.option__button {
+  @extend .ma-3;
+}
+
+.content_options {
+  @extend .pt-4;
+}
+.contet__options_buttons {
+  display: flex;
+}

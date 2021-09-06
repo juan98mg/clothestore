@@ -1,0 +1,15 @@
+<mat-nav-list>
+  <mat-list-item
+    appaccordionlink
+    routerlinkactive="selected"
+    *ngFor="let item of categories"
+    class="mat-list-item mat-focus-indicator ng-star-inserted"
+  >
+    <svg-icon
+      [src]="item.iconPath"
+      [svgStyle]="{ 'width.px': 30, 'height.px': 30 }"
+      class="mr-2"
+    ></svg-icon>
+    <span class="list-item-text ml-2"> {{ item.name }} </span>
+  </mat-list-item>
+</mat-nav-list>
