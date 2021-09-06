@@ -1,0 +1,45 @@
+<div class="row content__row">
+  <div class="col-8 title">
+    <span class="title__text text"> {{ title }} </span>
+    <button
+      mat-icon-button
+      color="accent"
+      aria-label="observar detaller"
+      class="text title__detail title__detail-display"
+      (click)="changeVisibility()"
+    >
+      <mat-icon class="text title__detail__icon">add</mat-icon>
+    </button>
+  </div>
+  <div class="col-8 content_options" *ngIf="showDetail && type == typeText">
+    <div
+      class="option animate__animated animate__backInLeft"
+      [class]="classByIndex(i)"
+      *ngFor="let option of options; let i = index"
+      (click)="navigate(option)"
+    >
+      <span class="text option__text" *ngIf="showDetail">
+        {{ option.content }}
+      </span>
+    </div>
+  </div>
+  <div
+    class="col-8 contet__options_buttons"
+    *ngIf="showDetail && type == typeIcon"
+  >
+    <div
+      class="animate__animated animate__backInLef"
+      *ngFor="let option of options; let i = index"
+    >
+      <button mat-icon-button class="option__button" (click)="navigate(option)">
+        <svg-icon
+          [src]="option.content"
+          [svgStyle]="{ 'width.px': 30, 'height.px': 30 }"
+          class="mr-2"
+        ></svg-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="content__row__divider content__row__divider-display"></div>
+</div>
