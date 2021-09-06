@@ -1,0 +1,17 @@
+<div class="row searchest">
+  <div class="col-12 center-info">
+    <span class="title"> PRODUCTOS POPULARES </span>
+  </div>
+
+  <div class="col-12 content__sub">
+    <mat-carousel [hideArrows]="false" clas>
+      <mat-carousel-slide
+        *ngFor="let subArray of products"
+        class="center-vertical"
+        style="height: 100%"
+      >
+        <app-carousel class="mt-5" [products]="subArray"> </app-carousel>
+      </mat-carousel-slide>
+    </mat-carousel>
+  </div>
+</div>

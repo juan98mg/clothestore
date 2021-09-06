@@ -1,8 +1,8 @@
 <div class="searcher">
   <mat-form-field class="searcher__input" appearance="fill">
     <mat-label>Busque su producto aquí</mat-label>
-    <input matInput type="text" />
-    <button matSuffix mat-icon-button aria-label="Clear">
+    <input matInput type="text" [(ngModel)]="value" />
+    <button matSuffix mat-icon-button aria-label="Clear" (click)="search()">
       <mat-icon>search</mat-icon>
     </button>
   </mat-form-field>

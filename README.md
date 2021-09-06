@@ -77,3 +77,9 @@ also you can test our **API** in this url
 
 remember **API** has context **api** and also this version is **v1**
 so urls will be able on https://clothestore234.herokuapp.com/api/v1/
+
+**DEPLOY**
+
+the site web for test this web project is
+**https://clothestore-fb4bf.web.app/products**
+[release](https://clothestore-fb4bf.web.app/products)

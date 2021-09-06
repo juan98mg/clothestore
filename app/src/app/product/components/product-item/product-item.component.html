@@ -1,0 +1,22 @@
+<mat-card class="h-100" style="height: 100%">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ name }}</mat-card-title>
+    <mat-card-subtitle>Stock: {{ stock }}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image height="300px" [src]="image" alt="Photo of a Shiba Inu" />
+  <mat-card-content>
+    <p>
+      {{ title }}
+    </p>
+    <p>
+      <span class="price">
+        Precio:
+        <span class="price-weight">{{ price }}</span>
+      </span>
+    </p>
+    <button mat-raised-button class="button__buy w-100" (click)="detail()">
+      Comprar
+    </button>
+  </mat-card-content>
+</mat-card>

@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { GlobalToolbarComponent } from './global-toolbar/global-toolbar.component';
 import { SearcherComponent } from './searcher/searcher.component';
 import { SidenavItemsComponent } from './sidenav-items/sidenav-items.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { SidenavItemsComponent } from './sidenav-items/sidenav-items.component';
     SidenavItemsComponent,
     FooterComponent,
     FooterColumnTextComponent,
+    LoadingComponent,
   ],
   imports: [CommonModule, SharedModule, FormsModule],
   exports: [GlobalToolbarComponent, SidenavItemsComponent, FooterComponent],
