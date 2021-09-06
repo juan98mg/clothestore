@@ -1,0 +1,9 @@
+@import "../../styles.scss";
+
+:host ::ng-deep .carousel-slide-overlay {
+  background: transparent !important;
+}
+
+.home {
+  @extend .pt-5;
+}
