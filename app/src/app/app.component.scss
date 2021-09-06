@@ -1,0 +1,23 @@
+@import "../styles.scss";
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.sidenav__options {
+  @extend .pr-3, .pl-3;
+}
+
+.sidenav__close-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer__copy-right {
+  color: white;
+  font-weight: 900;
+}
