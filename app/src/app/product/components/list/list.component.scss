@@ -1,0 +1,15 @@
+@import "../../../../styles.scss";
+
+.title {
+  font-size: xx-large;
+  font-weight: bold;
+  line-height: 100%;
+}
+
+.searchest {
+  @extend .pa-5;
+}
+
+.title-weight {
+  font-weight: normal;
+}

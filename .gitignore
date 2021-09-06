@@ -1,5 +1,7 @@
 HELP.md
 target/
+public/
+app/dist/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
