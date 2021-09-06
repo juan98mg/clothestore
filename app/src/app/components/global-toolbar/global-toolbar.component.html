@@ -1,0 +1,55 @@
+<mat-toolbar class="">
+  <mat-toolbar-row class="toolbar">
+    <button
+      mat-icon-button
+      class="toolbar__drawer__button"
+      aria-label="Example icon-button with menu icon"
+      (click)="menuEvent()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="toolbar__title">CLOTHESSTORE</span>
+
+    <app-searcher class="toolbar__searcher toolbar__searcher-display w-50">
+    </app-searcher>
+    <div class="toolbar_options">
+      <button mat-button class="mr-1" aria-label="carrito de compras">
+        <mat-icon
+          [matBadge]="boughtItems"
+          matBadgeColor="accent"
+          class="material-icons-outlined"
+          >shopping_cart</mat-icon
+        >
+        <span class="cdk-visually-hidden"> ShopingCart </span>
+      </button>
+      <button
+        mat-button
+        class="mr-2 toolbar_options__user-display"
+        aria-label="información de la persona"
+      >
+        <mat-icon>person_outline</mat-icon>
+      </button>
+      <button mat-raised-button class="toolbar_options__login-display">
+        Iniciar sesión
+      </button>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="toolbar_row">
+    <app-searcher class="toolbar__searcher toolbar__searcher-width w-100">
+    </app-searcher>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="toolbar_categories toolbar_categories-display">
+    <div
+      class="toolbar__category"
+      *ngFor="let category of categories; let i = index"
+    >
+      <span class="toolbar___category__text">
+        {{ category.name }}
+      </span>
+      <div
+        class="toolbar__category__divider"
+        *ngIf="i != categories.length - 1"
+      ></div>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
