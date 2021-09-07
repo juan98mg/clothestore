@@ -1,0 +1,7 @@
+@use "../../../styles.scss";
+
+.loading__text {
+  @extend .center-info, .text-center;
+  font-size: x-large;
+  font-weight: bold;
+}

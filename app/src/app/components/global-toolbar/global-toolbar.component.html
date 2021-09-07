@@ -42,6 +42,7 @@
     <div
       class="toolbar__category"
       *ngFor="let category of categories; let i = index"
+      (click)="search(category.name)"
     >
       <span class="toolbar___category__text">
         {{ category.name }}
