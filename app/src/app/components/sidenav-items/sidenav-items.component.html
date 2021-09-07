@@ -4,6 +4,7 @@
     routerlinkactive="selected"
     *ngFor="let item of categories"
     class="mat-list-item mat-focus-indicator ng-star-inserted"
+    (click)="search(item.name)"
   >
     <svg-icon
       [src]="item.iconPath"

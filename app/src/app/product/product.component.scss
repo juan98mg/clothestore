@@ -11,3 +11,10 @@
 .searched {
   padding-bottom: 50px;
 }
+
+@media (min-width: 430x) {
+  .home__slider__img {
+    width: 80%;
+    min-height: 80%;
+  }
+}

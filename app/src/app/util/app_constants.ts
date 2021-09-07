@@ -14,6 +14,11 @@ export const AppConstants = {
   unknowError:
     'Un error desconocido a ocurrido, porfavor comuniquese con soporte técnico',
   globalError: 'Error',
+  GlobalSuccess: 'Felicidades.',
+  productAdded: function (name: string) {
+    return `el producto: ${name}. fue añadido al carrito exitosamente`;
+  },
+  successIcon: 'assets/icons/success.gif',
 };
 
 export const firebaseConfig = {

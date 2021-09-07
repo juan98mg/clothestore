@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { SearcherService } from 'src/app/services/searcher.service';
 import { ShopingCartService } from 'src/app/services/shoping-cart.service';
 
 @Component({
@@ -11,7 +13,9 @@ export class GlobalToolbarComponent implements OnInit {
   @Input() sidenave: any;
   constructor(
     private shopingService: ShopingCartService,
-    private categorieService: CategoriesService
+    private categorieService: CategoriesService,
+    private searcher: SearcherService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -26,5 +30,14 @@ export class GlobalToolbarComponent implements OnInit {
 
   menuEvent() {
     this.sidenave.toggle();
+  }
+
+  search(category: string) {
+    this.searcher.next(category);
+    this.router.navigateByUrl('');
+  }
+
+  openShoping() {
+    this.router.navigateByUrl('products/shop');
   }
 }

@@ -24,22 +24,26 @@ export class MostsearchedComponent implements OnInit {
   }
 
   getRamdom() {
-    this.loading.showLoding();
+    let ctx = this;
+    ctx.loading.showLoding();
     this.productService.search().subscribe(
       (data) => {
         console.log('esto es lo raro', data);
-        this.loading.closeLoading();
+        ctx.loading.closeLoading();
 
         console.log('sliced', data.results.slice(0, 100), data.results);
-        this.sliceBy(this.window.innerWidth >= 430 ? 3 : 1, data.results);
+        ctx.sliceBy(ctx.window.innerWidth >= 430 ? 3 : 1, data.results);
       },
       (error) => {
-        this.loading.closeLoading();
+        ctx.loading.closeLoading();
         this.messageService.commonMessage(
           AppConstants.globalError,
           AppConstants.unknowError,
           AppConstants.sweetIcons.error
         );
+      },
+      () => {
+        this.loading.closeLoading();
       }
     );
   }

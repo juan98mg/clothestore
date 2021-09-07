@@ -1,4 +1,4 @@
-<mat-card class="h-100" style="height: 100%">
+<mat-card class="h-100 w-100" style="height: 100%">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{ name }}</mat-card-title>
@@ -6,17 +6,47 @@
   </mat-card-header>
   <img mat-card-image height="300px" [src]="image" alt="Photo of a Shiba Inu" />
   <mat-card-content>
-    <p>
-      {{ title }}
-    </p>
-    <p>
-      <span class="price">
-        Precio:
-        <span class="price-weight">{{ price }}</span>
-      </span>
-    </p>
-    <button mat-raised-button class="button__buy w-100" (click)="detail()">
-      Comprar
-    </button>
+    <div>
+      <p>
+        <span class="price">
+          Precio:
+          <span class="price-weight">{{ price | currency: "COP" }}</span>
+        </span>
+      </p>
+    </div>
+    <mat-button-toggle-group
+      *ngIf="!showAddButton"
+      name="fontStyle"
+      aria-label="Font Style"
+      class=""
+    >
+      <mat-button-toggle value="bold" class="button__quantity">
+        <mat-icon color="accent" (click)="decrement()">remove_circle</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="italic">
+        <input
+          matInput
+          type="number"
+          [max]="maximun"
+          [(ngModel)]="product.quantity"
+          (focusout)="validMaximum()"
+        />
+      </mat-button-toggle>
+      <mat-button-toggle value="underline" class="button__quantity">
+        <mat-icon color="accent" (click)="increment()"> add_circle </mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <div>
+      <button
+        mat-raised-button
+        class="button__buy w-100"
+        (click)="detail()"
+        *ngIf="showAddButton"
+      >
+        Comprar
+      </button>
+    </div>
   </mat-card-content>
+  <mat-card-actions [align]="'end'" class="mt-3" class="card__actions">
+  </mat-card-actions>
 </mat-card>

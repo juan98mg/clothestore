@@ -13,13 +13,19 @@
     <app-searcher class="toolbar__searcher toolbar__searcher-display w-50">
     </app-searcher>
     <div class="toolbar_options">
-      <button mat-button class="mr-1" aria-label="carrito de compras">
+      <button
+        mat-button
+        class="mr-1"
+        (click)="openShoping()"
+        aria-label="carrito de compras"
+      >
         <mat-icon
           [matBadge]="boughtItems"
           matBadgeColor="accent"
           class="material-icons-outlined"
           >shopping_cart</mat-icon
         >
+
         <span class="cdk-visually-hidden"> ShopingCart </span>
       </button>
       <button
@@ -42,6 +48,7 @@
     <div
       class="toolbar__category"
       *ngFor="let category of categories; let i = index"
+      (click)="search(category.name)"
     >
       <span class="toolbar___category__text">
         {{ category.name }}

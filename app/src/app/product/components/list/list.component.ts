@@ -48,6 +48,9 @@ export class ListComponent implements OnInit {
           AppConstants.unknowError,
           AppConstants.sweetIcons.error
         );
+      },
+      () => {
+        this.loading.closeLoading();
       }
     );
   }
