@@ -8,11 +8,13 @@ import { LoadingComponent } from '../components/loading/loading.component';
 export class LoadingService {
   constructor(private dialog: MatDialog) {}
 
-  loadingRef: MatDialogRef<any, any> | undefined;
+  private loadingRef: MatDialogRef<any, any> | undefined;
 
   shown = false;
   showLoding(text = 'cargando') {
     this.shown = true;
+
+    if (this.loadingRef != null) this.loadingRef.close();
     this.loadingRef = this.dialog.open(LoadingComponent, {
       data: { message: text },
       disableClose: true,

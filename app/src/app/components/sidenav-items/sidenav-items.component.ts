@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { SearcherService } from 'src/app/services/searcher.service';
 
@@ -10,7 +11,8 @@ import { SearcherService } from 'src/app/services/searcher.service';
 export class SidenavItemsComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
-    private searcherService: SearcherService
+    private searcherService: SearcherService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -20,6 +22,7 @@ export class SidenavItemsComponent implements OnInit {
   }
 
   search(category: string) {
+    this.router.navigateByUrl('');
     this.searcherService.next(category);
   }
 }

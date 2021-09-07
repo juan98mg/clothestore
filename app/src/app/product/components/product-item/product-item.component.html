@@ -10,12 +10,39 @@
       <p>
         <span class="price">
           Precio:
-          <span class="price-weight">{{ price }}</span>
+          <span class="price-weight">{{ price | currency: "COP" }}</span>
         </span>
       </p>
     </div>
+    <mat-button-toggle-group
+      *ngIf="!showAddButton"
+      name="fontStyle"
+      aria-label="Font Style"
+      class=""
+    >
+      <mat-button-toggle value="bold" class="button__quantity">
+        <mat-icon color="accent" (click)="decrement()">remove_circle</mat-icon>
+      </mat-button-toggle>
+      <mat-button-toggle value="italic">
+        <input
+          matInput
+          type="number"
+          [max]="maximun"
+          [(ngModel)]="product.quantity"
+          (focusout)="validMaximum()"
+        />
+      </mat-button-toggle>
+      <mat-button-toggle value="underline" class="button__quantity">
+        <mat-icon color="accent" (click)="increment()"> add_circle </mat-icon>
+      </mat-button-toggle>
+    </mat-button-toggle-group>
     <div>
-      <button mat-raised-button class="button__buy w-100" (click)="detail()">
+      <button
+        mat-raised-button
+        class="button__buy w-100"
+        (click)="detail()"
+        *ngIf="showAddButton"
+      >
         Comprar
       </button>
     </div>

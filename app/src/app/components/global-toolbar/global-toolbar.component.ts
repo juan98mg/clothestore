@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { SearcherService } from 'src/app/services/searcher.service';
 import { ShopingCartService } from 'src/app/services/shoping-cart.service';
@@ -13,7 +14,8 @@ export class GlobalToolbarComponent implements OnInit {
   constructor(
     private shopingService: ShopingCartService,
     private categorieService: CategoriesService,
-    private searcher: SearcherService
+    private searcher: SearcherService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -32,5 +34,10 @@ export class GlobalToolbarComponent implements OnInit {
 
   search(category: string) {
     this.searcher.next(category);
+    this.router.navigateByUrl('');
+  }
+
+  openShoping() {
+    this.router.navigateByUrl('products/shop');
   }
 }

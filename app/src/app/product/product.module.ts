@@ -7,9 +7,10 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductComponent } from './product.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { ListComponent } from './components/list/list.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
-  declarations: [ProductComponent, MostsearchedComponent, ProductItemComponent, CarouselComponent, ListComponent],
+  declarations: [ProductComponent, MostsearchedComponent, ProductItemComponent, CarouselComponent, ListComponent, ShoppingCartComponent],
   imports: [CommonModule, ProductRoutingModule, SharedModule],
   exports: [MostsearchedComponent],
 })
