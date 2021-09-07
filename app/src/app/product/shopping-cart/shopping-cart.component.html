@@ -1,0 +1,45 @@
+<div class="row searchest">
+  <div class="col-12 center-info">
+    <span class="title text-center"> PRODUCTOS EN CARRITO </span>
+  </div>
+  <div class="col-12 mt-3">
+    <div class="row center-info">
+      <div class="col-8 center-info">
+        <mat-card>
+          <span class="title text-center"
+            >El valor total a pagar es:
+            <span class="title-weight"> {{ total | currency }}</span></span
+          >
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12">
+    <div class="row w-100 center-info">
+      <div
+        class="
+          col-xl-3 col-md-3 col-sm-12 col-lg-3 col-xs-12
+          center-info
+          pt-2
+          pb-2
+        "
+        *ngFor="let item of products"
+      >
+        <app-product-item [product]="item"> </app-product-item>
+      </div>
+    </div>
+
+    <div class="row center-info mt-5 mb-5" *ngIf="products.length == 0">
+      <img
+        src="assets/images/animateToshop.gif"
+        alt="show"
+        class="mb-5 mt-5"
+        style="width: 80%"
+      />
+      <div class="col-12 mt-5 text-center">
+        <span class="title"> NO HAS COMPRADO NI UN PRODUCTO. QUE ESPERAS</span>
+      </div>
+    </div>
+  </div>
+</div>
